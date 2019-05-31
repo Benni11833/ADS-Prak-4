@@ -20,7 +20,9 @@ void swap(int &val1, int &val2){
 	int tmp{val1};	val1 = val2;	val2 = tmp;
 }
 
-int partition(std::vector<int> &arr, int left, int right){
+int partition(std::vector<int>& arr, int left, int right){
+	if (right == arr.size())
+		--right;
 		int x = arr[right];
 		int i = left-1;
 		for(int j=left; j <= right-1; j++){
@@ -67,7 +69,7 @@ int partition(std::vector<int> &arr, int left, int right){
 		//einsortieren aus tmp in a
 		int i{0}, j{n1+1}, k{low};
 		for(k=low; k < high; k++){
-			if(b[i] <= b[j] && i <= n1){
+			if(i <= n1 && j <= high - low && b[i] <= b[j]){
 				a[k] = b[i++];
 			}
 			else if(j <= high-low){

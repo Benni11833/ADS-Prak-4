@@ -54,14 +54,18 @@ int main(int argc, char* argv[]){
     std::cout << "Starte Sortieren mit " << N << " Elementen.\n";
     Timer t1;
     std::vector<int> rnd_vec;
-    std::vector<int> sort_vec = rnd_vec;
+    std::vector<int> sort_vec;
     sort_vec.resize(N);
     rnd_vec.resize(N);
     sorting::randomizeVector(rnd_vec, N);
     sort_vec = rnd_vec;
-    t1.reset();
+	/*std::cout << "Unsorted:\n";
+	Print_Vec(sort_vec);
+    */t1.reset();
     sorting::QuickSort(sort_vec, 0, sort_vec.size());
     std::cout << "Quicksort lief " << t1.getDuration() << " Sekunden\n";
+	/*std::cout << "QuickSorted:\n";
+	Print_Vec(sort_vec);*/
     
     sort_vec = rnd_vec;
     /*sort_vec.resize(5);
@@ -73,8 +77,9 @@ int main(int argc, char* argv[]){
     vector<int> x;
     sorting::MergeSort(sort_vec, x, 0, sort_vec.size());
     std::cout << "Mergesort lief " << t1.getDuration() << " Sekunden\n";
-    /*std::cout << std::endl << "MergeSorted:\n" << std::endl << std::endl;
+    /*std::cout << std::endl << "MergeSorted:\n";
     Print_Vec(sort_vec);*/
+	system("Pause");
     return 0;
 }
 
