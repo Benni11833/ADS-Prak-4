@@ -60,7 +60,29 @@ int main(int argc, char* argv[]){
     sort_vec.resize(N);
     rnd_vec.resize(N);
     sorting::randomizeVector(rnd_vec, N);
-    
+
+    /*rnd_vec.resize(6);
+    rnd_vec[0] = 7; rnd_vec[1] = 2;
+    rnd_vec[2] = 3; rnd_vec[3] = 9;
+    rnd_vec[4] = -3; rnd_vec[5] = 1;
+    rnd_vec[6] = 0; rnd_vec[7] = 13;*/
+
+    sort_vec = rnd_vec;
+
+    std::cout << "Unsorted:\n";
+    Print_Vec(sort_vec);
+
+    //Heap-Sort
+    sort_vec = rnd_vec;
+    t1.reset();
+    sorting::HeapSort(sort_vec, sort_vec.size());
+    std::cout << "HeapSort lief " << t1.getDuration() << " Sekunden.\n";
+    std::cout << "HeapSorted: \n";
+    Print_Vec(sort_vec);
+    return 0;
+    //std::cin.get();
+
+
 	sort_vec = rnd_vec;
 	t1.reset();
     sorting::QuickSort(sort_vec, 0, sort_vec.size());

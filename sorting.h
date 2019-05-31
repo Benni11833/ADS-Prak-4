@@ -24,7 +24,8 @@ namespace sorting {
   // Heapsort  *
   //************
   void HeapSort(vector<int> &a, int n);
-
+  void percUp(vector<int> &a, int p, int r);
+  int leftChild(int i);
   //************
   // Shellsort *
   //************

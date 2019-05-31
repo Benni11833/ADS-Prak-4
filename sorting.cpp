@@ -82,15 +82,40 @@ int partition(std::vector<int>& arr, int left, int right){
 	//************
 
 	void HeapSort(vector<int> &a, int n) {
-
-
-		//***************************
-		// implement heapsort here *
-		//***************************
+		int i=n/2;
+		while(i >= 0){
+			percUp(a, i, n);
+			--i;
+		}
+		std::cout << "Vec nach Erstem PercUp-Schleife:\n";
+		for(int i=0; i < n; i++)
+			std::cout << a[i] << ",";
+		std::cout << std::endl;
+		std::cin.get();
+		int j = n-1;
+		while(j > 0){
+			swap(a[0], a[j]);
+			percUp(a, 0, j);
+			--j;
+		}
 
 	}
 
+	int leftChild(int i){ return 2*i +1; }
 
+	void percUp(vector<int> &a, int i, int n){
+		//Tauscht Max in Kindern mit Wurzel(i), falls groesser
+		if(2*i+2 < n && a[2*i+2] >= a[2*i+1] && a[2*i+2] > a[i]){
+			swap(a[2*i+2], a[i]);
+			percUp(a, 2*i+2, i);	//rekursiv Teilbaum percUppen, da geändert(evtl neues Max)
+		}else if(2*i+2 < n && a[2*i+1] > a[2*i+2] && a[2*i+1] > a[i]){
+			swap(a[2*i+1], a[i]);
+			percUp(a, 2*i+1, n);	//s. oben
+		}else if(2*i+1 < n && a[2*i+1] > a[i]){	//wenn nur linken nachfolger, tauschen wenn groesser
+			swap(a[2*i+1], a[i]);
+			percUp(a, 2*i+1, n);	//s. oben
+		}
+	}
 
 	//************
 	// Shellsort *
