@@ -5,6 +5,9 @@
 
 #include <algorithm>
 
+#define CATCH_CONFIG_RUNNER
+#include "catch.h"
+
 #define NumbersInLine 8
 
 void Print_Vec(std::vector<int>& arr){
@@ -46,6 +49,21 @@ struct Timer{
 };
 
 int main(int argc, char* argv[]){
+
+    //UnitTests:
+    /*Catch::Session().run();
+    return 0;*/
+
+    std::vector<int> V{98, 44, 30, 22, 64, 63, 11, 23, 8, 18};
+    sorting::HeapSort(V, V.size());
+    std::cout << "HeapSorted:\n";
+	for(auto i : V)
+		std::cout << i << ",";
+	std::cout << std::endl;
+	return 0;
+    std::cin.get();
+
+
     long unsigned int N{0L};
     if(argc == 1){
         std::cout << "Anz der Elemente: ";
@@ -60,28 +78,13 @@ int main(int argc, char* argv[]){
     sort_vec.resize(N);
     rnd_vec.resize(N);
     sorting::randomizeVector(rnd_vec, N);
-
-    /*rnd_vec.resize(6);
-    rnd_vec[0] = 7; rnd_vec[1] = 2;
-    rnd_vec[2] = 3; rnd_vec[3] = 9;
-    rnd_vec[4] = -3; rnd_vec[5] = 1;
-    rnd_vec[6] = 0; rnd_vec[7] = 13;*/
-
     sort_vec = rnd_vec;
-
-    std::cout << "Unsorted:\n";
-    Print_Vec(sort_vec);
 
     //Heap-Sort
     sort_vec = rnd_vec;
     t1.reset();
     sorting::HeapSort(sort_vec, sort_vec.size());
     std::cout << "HeapSort lief " << t1.getDuration() << " Sekunden.\n";
-    std::cout << "HeapSorted: \n";
-    Print_Vec(sort_vec);
-    return 0;
-    //std::cin.get();
-
 
 	sort_vec = rnd_vec;
 	t1.reset();
@@ -103,11 +106,11 @@ int main(int argc, char* argv[]){
 	t1.reset();
 	sorting::ShellSort(sort_vec, sort_vec.size());
 	std::cout << "Shellsort lief " << t1.getDuration() << " Sekunden." << std::endl;
-	system("Pause");
+	//system("Pause");
     return 0;
 }
 
 /*TODO
-HeapSort
 ->Messzeiten in TextDatei anzeigen
+2. Teil HashTable
  */

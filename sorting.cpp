@@ -87,11 +87,6 @@ int partition(std::vector<int>& arr, int left, int right){
 			percUp(a, i, n);
 			--i;
 		}
-		std::cout << "Vec nach Erstem PercUp-Schleife:\n";
-		for(int i=0; i < n; i++)
-			std::cout << a[i] << ",";
-		std::cout << std::endl;
-		std::cin.get();
 		int j = n-1;
 		while(j > 0){
 			swap(a[0], a[j]);
