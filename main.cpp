@@ -51,17 +51,9 @@ struct Timer{
 int main(int argc, char* argv[]){
 
     //UnitTests:
-    /*Catch::Session().run();
-    return 0;*/
-
-    std::vector<int> V{98, 44, 30, 22, 64, 63, 11, 23, 8, 18};
-    sorting::HeapSort(V, V.size());
-    std::cout << "HeapSorted:\n";
-	for(auto i : V)
-		std::cout << i << ",";
-	std::cout << std::endl;
-	return 0;
-    std::cin.get();
+    Catch::Session().run();
+	system("pause");
+    return 0;
 
 
     long unsigned int N{0L};

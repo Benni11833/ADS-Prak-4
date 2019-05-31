@@ -102,7 +102,7 @@ int partition(std::vector<int>& arr, int left, int right){
 		//Tauscht Max in Kindern mit Wurzel(i), falls groesser
 		if(2*i+2 < n && a[2*i+2] >= a[2*i+1] && a[2*i+2] > a[i]){
 			swap(a[2*i+2], a[i]);
-			percUp(a, 2*i+2, i);	//rekursiv Teilbaum percUppen, da geändert(evtl neues Max)
+			percUp(a, 2*i+2, n);	//rekursiv Teilbaum percUppen, da geändert(evtl neues Max)
 		}else if(2*i+2 < n && a[2*i+1] > a[2*i+2] && a[2*i+1] > a[i]){
 			swap(a[2*i+1], a[i]);
 			percUp(a, 2*i+1, n);	//s. oben
