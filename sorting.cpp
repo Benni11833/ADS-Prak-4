@@ -47,24 +47,6 @@ int partition(std::vector<int>& arr, int left, int right){
 		for(int i=0; i < b.size(); i++){
 			b[i] = a[low+i];
 		}
-		
-		/*std::cout << "TestAusgabe:\n\n";
-		std::cout << "a[low-high]:\n";
-		for(int i=low; i < high; i++)
-			std::cout << a[i] << ",";
-		std::cout << std::endl << "tmp[0-(high-low):\n";
-		for(int i=0; i < b.size(); i++)
-			std::cout << b[i] << ",";
-		std::cout << std::endl << std::endl;
-		std::cout << "sollen gleich sein: " << a[pivot] << " - " << b[pivot-low] << std::endl;
-		std::cin.get();*/
-
-		/*std::cout << "low=" << low << " - piv=" << pivot << " - high="
-		<< high  << " - n1=" << n1 << std::endl;
-		std::cout << std::endl << "tmp[0-(high-low):\n";
-		for(int i=0; i < b.size(); i++)
-			std::cout << b[i] << ",";
-		std::cout << std::endl;*/
 
 		//einsortieren aus tmp in a
 		int i{0}, j{n1+1}, k{low};
@@ -78,20 +60,12 @@ int partition(std::vector<int>& arr, int left, int right){
 			else
 				break;
 		}
+
 		//reste in TeilArrays in a einsortieren
 		while(i <= n1 && k <= high)
 			a[k++] = b[i++];
 		while(j < high-low && k < high)
 			a[k++] = b[j++];
-		
-		/*std::cout << "TestAusgabe:\n\n";
-		std::cout << "a[low-high]:\n";
-		for(int i=low; i <= high; i++)
-			std::cout << a[i] << ",";
-		std::cout << std::endl << "a[ges]:\n";
-		for(int i=0; i < a.size(); i++)
-			std::cout << a[i] << ",";
-		std::cin.get();*/
 	}
 
 	void MergeSort(vector<int> &a, vector<int> &b, int low, int high) {

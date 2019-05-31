@@ -60,24 +60,16 @@ int main(int argc, char* argv[]){
     sort_vec.resize(N);
     rnd_vec.resize(N);
     sorting::randomizeVector(rnd_vec, N);
-    sort_vec = rnd_vec;
-	/*std::cout << "Unsorted:\n";
-	Print_Vec(sort_vec);
-    */t1.reset();
+    
+	sort_vec = rnd_vec;
+	t1.reset();
     sorting::QuickSort(sort_vec, 0, sort_vec.size());
     std::cout << "Quicksort lief " << t1.getDuration() << " Sekunden\n";
-	/*std::cout << "QuickSorted:\n";
-	Print_Vec(sort_vec);
-    */
-    sort_vec = rnd_vec;
-	std::cout << "UnSorted:\n";
-	Print_Vec(sort_vec);
+    
+	sort_vec = rnd_vec;
 	t1.reset();
 	sort(sort_vec.begin(), sort_vec.end());
 	std::cout << "sort lief " << t1.getDuration() << " Sekunden\n";
-	std::cout << "sort-Sorted:\n";
-	Print_Vec(sort_vec);
-	std::cin.get();
 
 	sort_vec = rnd_vec;
     vector<int> x;
@@ -94,7 +86,6 @@ int main(int argc, char* argv[]){
 }
 
 /*TODO
-Shellsort (Hibbard Folge)
 HeapSort
 ->Messzeiten in TextDatei anzeigen
  */
