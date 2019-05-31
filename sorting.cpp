@@ -123,12 +123,13 @@ int partition(std::vector<int>& arr, int left, int right){
 	//************
 	void ShellSort(vector<int> &a, int n)
 	{
-
-		//***************************
-		// implement shellsort here *
-		//***************************
-
-
+		int h{ (n + 1) / 2 };
+		while (h >= 1) {
+			for (int i = 0; i < n; i++)
+				if (i+h < n && a[i] < a[(i + h)])
+					swap(a[i], a[i + h]);
+			h /= 2;
+		}
 	}
 
 
