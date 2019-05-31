@@ -3,6 +3,8 @@
 #include <chrono>
 #include "sorting.h"
 
+#include <algorithm>
+
 #define NumbersInLine 8
 
 void Print_Vec(std::vector<int>& arr){
@@ -59,25 +61,34 @@ int main(int argc, char* argv[]){
     rnd_vec.resize(N);
     sorting::randomizeVector(rnd_vec, N);
     sort_vec = rnd_vec;
-	std::cout << "Unsorted:\n";
+	/*std::cout << "Unsorted:\n";
 	Print_Vec(sort_vec);
-    /*t1.reset();
+    */t1.reset();
     sorting::QuickSort(sort_vec, 0, sort_vec.size());
     std::cout << "Quicksort lief " << t1.getDuration() << " Sekunden\n";
-	std::cout << "QuickSorted:\n";
+	/*std::cout << "QuickSorted:\n";
 	Print_Vec(sort_vec);
-    
+    */
     sort_vec = rnd_vec;
-    t1.reset();
+	std::cout << "UnSorted:\n";
+	Print_Vec(sort_vec);
+	t1.reset();
+	sort(sort_vec.begin(), sort_vec.end());
+	std::cout << "sort lief " << t1.getDuration() << " Sekunden\n";
+	std::cout << "sort-Sorted:\n";
+	Print_Vec(sort_vec);
+	std::cin.get();
+
+	sort_vec = rnd_vec;
     vector<int> x;
+	t1.reset();
     sorting::MergeSort(sort_vec, x, 0, sort_vec.size());
     std::cout << "Mergesort lief " << t1.getDuration() << " Sekunden\n";
-	*/
+	
+	sort_vec = rnd_vec;
 	t1.reset();
 	sorting::ShellSort(sort_vec, sort_vec.size());
-	std::cout << "Shellsort lief " << t1.getDuration() << " Sekunden."
-		<< "Shellsorted:\n";
-	Print_Vec(sort_vec);
+	std::cout << "Shellsort lief " << t1.getDuration() << " Sekunden." << std::endl;
 	system("Pause");
     return 0;
 }
