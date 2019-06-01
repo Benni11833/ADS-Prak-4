@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <chrono>
 #include "sorting.h"
+#include "hashtable.h"
 
 #include <algorithm>
 

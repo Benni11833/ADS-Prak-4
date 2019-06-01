@@ -5,32 +5,37 @@ using namespace std;
 
 HashTable::HashTable(int size) {
 	collisionCount = elements = 0;
-	this->size = size;
+	hashTable = new vector<int>;
 	hashTable->resize(size, -1);
+	this->size = size;
 }
 
 HashTable::~HashTable()
 {
-	hashTable->~vector();
+	delete hashTable;
 }
 
 int HashTable::hashValue(int item) {
 	
 	int index = -1; //dummy initializtation
-	int i{1};
+	/*int i{1};
 	index = item % size;
-	while(hashTable->at(index) == -1){
+	while(hashTable->at(index) != -1){
 		index = ((item % size + i*i)%size);
 		++i;
 		++collisionCount;
+	}*/
+	int i{0};
+	while(hashTable->at(((item % size + i*i)%size)) != -1){
+		++i;
+		++collisionCount;
 	}
-
-	return index;
+	return ((item % size + i*i)%size);
 }
 
 int HashTable::insert(int item) {
-	
-	hashTable->at(hashValue(item)) = item;
+	int hashVal = hashValue(item);
+	hashTable->at(hashVal) = item;
 	++elements;
 
 	return 0; //dummy return
@@ -51,4 +56,10 @@ int HashTable::getSize() {
 
 int HashTable::getElements() {
 	return this->elements;
+}
+
+void HashTable::print()const{
+	std::cout << "HashTable->size(): " << size << std::endl;
+	for(int i=0; i < size; i++)
+		std::cout << i << ": " << hashTable->at(i) << std::endl;
 }
