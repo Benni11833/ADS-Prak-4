@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <fstream>
 #include "sorting.h"
 #include "hashtable.h"
 
@@ -49,12 +50,37 @@ struct Timer{
    }*/
 };
 
+bool writeData(const char* filename, unsigned long N){
+    std::ofstream outFile;
+    outFile.open(filename);
+    if(!outFile.is_open()){
+        std::cerr << "Datei \"" << filename << "\" konnte nicht geoeffnet werden.\n";
+        return false;
+    }
+    Timer t1;
+    std::vector<int> rnd_vec;
+    std::vector<int> sort_vec;
+
+    sort_vec.resize(N);
+    rnd_vec.resize(N);
+    sorting::randomizeVector(rnd_vec, N);
+    sort_vec = rnd_vec;
+
+    //QuickSort:
+    t1.reset();
+    sorting::QuickSort(sort_vec, 0, N);
+    outFile << N << '\t' << t1.getDuration() << std::endl;
+    outFile.close();
+    std::cerr << "Datei \"" << filename << "\" wurde erfolgreich beschrieben.\n";
+    return true;
+}
+
 int main(int argc, char* argv[]){
 
     //UnitTests:
-    Catch::Session().run();
+    /*Catch::Session().run();
 	system("pause");
-    return 0;
+    */
 
 
     long unsigned int N{0L};
@@ -65,7 +91,8 @@ int main(int argc, char* argv[]){
         N = atol(argv[1]);
     }
     std::cout << "Starte Sortieren mit " << N << " Elementen.\n";
-    Timer t1;
+    writeData("QuickSort.txt", 100000);
+    /*Timer t1;
     std::vector<int> rnd_vec;
     std::vector<int> sort_vec;
     sort_vec.resize(N);
@@ -99,11 +126,12 @@ int main(int argc, char* argv[]){
 	t1.reset();
 	sorting::ShellSort(sort_vec, sort_vec.size());
 	std::cout << "Shellsort lief " << t1.getDuration() << " Sekunden." << std::endl;
-	//system("Pause");
+	//system("Pause");*/
     return 0;
 }
 
 /*TODO
+->out_Data mit optionalen Parametern(fuer Anzahl von 1000, 100000)
 ->Messzeiten in TextDatei anzeigen
 2. Teil HashTable
  */
