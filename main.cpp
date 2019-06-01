@@ -22,6 +22,8 @@ void Print_Vec(std::vector<int>& arr){
     std::cout << std::endl << std::endl;
 }
 
+enum Algorithms{ quicksort, mergesort, heapsort, shellsort};
+
 struct Timer{
     //std::chrono::time_point<std::chrono::steady_clock> start, end;
     std::chrono::high_resolution_clock::time_point start, end;
@@ -50,7 +52,7 @@ struct Timer{
    }*/
 };
 
-bool writeData(const char* filename, unsigned long N){
+bool writeData(const char* filename, unsigned long start, unsigned int step, unsigned long stop, Algorithms algorithm){
     std::ofstream outFile;
     outFile.open(filename);
     if(!outFile.is_open()){
@@ -58,18 +60,32 @@ bool writeData(const char* filename, unsigned long N){
         return false;
     }
     Timer t1;
-    std::vector<int> rnd_vec;
     std::vector<int> sort_vec;
-
-    sort_vec.resize(N);
-    rnd_vec.resize(N);
-    sorting::randomizeVector(rnd_vec, N);
-    sort_vec = rnd_vec;
-
-    //QuickSort:
-    t1.reset();
-    sorting::QuickSort(sort_vec, 0, N);
-    outFile << N << '\t' << t1.getDuration() << std::endl;
+    while(start <= stop){
+        std::cout << "Starte sortieren fuer " << start << " Elemente.\n";
+    sort_vec.resize(start);
+    sorting::randomizeVector(sort_vec, start);
+    if(algorithm == Algorithms::quicksort){
+        //QuickSort:
+        t1.reset();
+        sorting::QuickSort(sort_vec, 0, start);
+    }else if(algorithm == Algorithms::mergesort){
+        //MergeSort:
+        vector<int> x;
+        t1.reset();
+        sorting::MergeSort(sort_vec, x, 0, start);
+    }else if(algorithm == Algorithms::heapsort){
+        //HeapSort:
+        t1.reset();
+        sorting::HeapSort(sort_vec, start);
+    }else if(algorithm == Algorithms::shellsort){
+        //ShellSort:
+        t1.reset();
+        sorting::ShellSort(sort_vec, start);
+    }
+    outFile << start << '\t' << t1.getDuration() << std::endl;
+    start += step;
+    };
     outFile.close();
     std::cerr << "Datei \"" << filename << "\" wurde erfolgreich beschrieben.\n";
     return true;
@@ -83,7 +99,7 @@ int main(int argc, char* argv[]){
     */
 
 
-    long unsigned int N{0L};
+    /*long unsigned int N{0L};
     if(argc == 1){
         std::cout << "Anz der Elemente: ";
         std::cin >> N;
@@ -91,7 +107,11 @@ int main(int argc, char* argv[]){
         N = atol(argv[1]);
     }
     std::cout << "Starte Sortieren mit " << N << " Elementen.\n";
-    writeData("QuickSort.txt", 100000);
+    quicksort, mergesort, heapsort, shellsort*/
+    writeData("quickSort.txt", 1000, 1000, 100000, Algorithms::quicksort);
+    writeData("mergesort.txt", 1000, 1000, 100000, Algorithms::mergesort);
+    writeData("heapsort.txt", 1000, 1000, 100000, Algorithms::heapsort);
+    writeData("shellsort.txt", 1000, 1000, 100000, Algorithms::shellsort);
     /*Timer t1;
     std::vector<int> rnd_vec;
     std::vector<int> sort_vec;
@@ -131,7 +151,7 @@ int main(int argc, char* argv[]){
 }
 
 /*TODO
-->out_Data mit optionalen Parametern(fuer Anzahl von 1000, 100000)
+vec mit obergrenzen, von da aus mit schleife in sort_vec reinkopieren?
 ->Messzeiten in TextDatei anzeigen
 2. Teil HashTable
  */
