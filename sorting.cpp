@@ -1,6 +1,5 @@
 #include "sorting.h"
 
-
 namespace sorting {
 
 	//************
@@ -93,10 +92,7 @@ int partition(std::vector<int>& arr, int left, int right){
 			percUp(a, 0, j);
 			--j;
 		}
-
 	}
-
-	int leftChild(int i){ return 2*i +1; }
 
 	void percUp(vector<int> &a, int i, int n){
 		//Tauscht Max in Kindern mit Wurzel(i), falls groesser
@@ -115,9 +111,22 @@ int partition(std::vector<int>& arr, int left, int right){
 	//************
 	// Shellsort *
 	//************
-	void ShellSort(vector<int> &a, int n)
+	/*void ShellSort(vector<int> &a, int n)
 	{
 		for (int h = n / 2; h > 0; h /= 2) {
+			for (int i = h; i < n; i++) {
+				int tmp = a[i];
+				int j{ i };
+				for (; j >= h && tmp < a[j - h]; j -= h) {
+					a[j] = a[j - h];
+				}
+				a[j] = tmp;
+			}
+		}
+	}*/
+	void ShellSort(vector<int> &a, int n)
+	{
+		for (int h = 1; h < n; h = 2*h+1) {
 			for (int i = h; i < n; i++) {
 				int tmp = a[i];
 				int j{ i };
@@ -139,8 +148,3 @@ int partition(std::vector<int>& arr, int left, int right){
 
 
 }
-
-
-
-
-

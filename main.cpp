@@ -94,10 +94,8 @@ bool writeData(const char* filename, unsigned long start, unsigned int step, uns
 int main(int argc, char* argv[]){
 
     //UnitTests:
-    /*Catch::Session().run();
+    Catch::Session().run();
 	system("pause");
-    */
-
 
     /*long unsigned int N{0L};
     if(argc == 1){
@@ -108,11 +106,14 @@ int main(int argc, char* argv[]){
     }
     std::cout << "Starte Sortieren mit " << N << " Elementen.\n";
     quicksort, mergesort, heapsort, shellsort*/
-    writeData("quickSort.txt", 1000, 1000, 100000, Algorithms::quicksort);
+   
+	/*writeData("quickSort.txt", 1000, 1000, 100000, Algorithms::quicksort);
     writeData("mergesort.txt", 1000, 1000, 100000, Algorithms::mergesort);
     writeData("heapsort.txt", 1000, 1000, 100000, Algorithms::heapsort);
     writeData("shellsort.txt", 1000, 1000, 100000, Algorithms::shellsort);
-    /*Timer t1;
+    */
+
+	/*Timer t1;
     std::vector<int> rnd_vec;
     std::vector<int> sort_vec;
     sort_vec.resize(N);
@@ -146,12 +147,15 @@ int main(int argc, char* argv[]){
 	t1.reset();
 	sorting::ShellSort(sort_vec, sort_vec.size());
 	std::cout << "Shellsort lief " << t1.getDuration() << " Sekunden." << std::endl;
-	//system("Pause");*/
+	*/
+
+	//HashTabelle erzeugen mit 1000
+	/*HashTable ht1{ 1000 };
+	srand(time(NULL));
+	for (int i = 0; i < 200; i++)
+		ht1.insert(rand() % 1500 + 1000);
+	std::cout << "Kollisionen: " << ht1.getCollisionCount() << std::endl;*/
+
+	system("Pause");
     return 0;
 }
-
-/*TODO
-vec mit obergrenzen, von da aus mit schleife in sort_vec reinkopieren?
-->Messzeiten in TextDatei anzeigen
-2. Teil HashTable
- */
